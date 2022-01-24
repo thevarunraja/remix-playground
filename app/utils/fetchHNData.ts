@@ -19,7 +19,8 @@ export interface IStory {
   by: string;
   descendants: number;
 }
-export default async function fetchHNStories(page = 1): Promise<IStory[]> {
+
+export async function fetchHNStories(page = 1): Promise<IStory[]> {
   try {
     const res = await get<number[]>(
       "https://hacker-news.firebaseio.com/v0/topstories.json"
@@ -35,7 +36,7 @@ export default async function fetchHNStories(page = 1): Promise<IStory[]> {
         return [];
       }
     });
-    const data = await Promise.all(
+    const stories = await Promise.all(
       items.map(async (i) => {
         const res = await get<IStoryData>(
           `https://hacker-news.firebaseio.com/v0/item/${i}.json`
@@ -49,7 +50,7 @@ export default async function fetchHNStories(page = 1): Promise<IStory[]> {
         };
       })
     );
-    return data;
+    return stories;
   } catch (error) {
     throw error;
   }

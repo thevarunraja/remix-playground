@@ -21,11 +21,12 @@ export const meta: MetaFunction = () => {
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <Meta />
         <Links />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -37,8 +38,8 @@ export default function App() {
           rel="stylesheet"
         ></link>
       </head>
-      <body className="mx-auto max-w-7xl font-body">
-        <div className="p-4">
+      <body className="font-body dark:bg-body-bg-color dark:text-white">
+        <div>
           <Outlet />
         </div>
         <ScrollRestoration />
